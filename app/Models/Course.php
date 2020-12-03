@@ -28,11 +28,30 @@ class Course extends Model
         }
     }
 
-    // Url
+    //Query scopes
+    public function scopeCategory($query, $category_id)
+    {
+        if($category_id)
+        {
+            return $query->where('category_id', $category_id);
+        }
+    }
+
+    public function scopeLevel($query, $level_id)
+    {
+        if($level_id)
+        {
+            return $query->where('level_id', $level_id);
+        }
+    }
+
+    // Url slug
     public function getRouteKeyName()
     {
         return "slug";
     }
+
+    //Eloquent Relations 
 
     // Relation one to many (Inverse)
     public function teacher()

@@ -25,6 +25,5 @@
     <!--End header-->
 
     @livewire('course-index')
-    
-    
+
 </x-AppLayout>
