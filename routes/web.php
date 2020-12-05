@@ -26,3 +26,12 @@ Route::get('cursos', [CourseController::class, 'index'])->name('courses.index');
 
 // Information course
 Route::get('cursos/{course}', [CourseController::class, 'show'])->name('courses.show');
+
+Route::post('users/{course}/enrolled', [CourseController::class , 'enrolled'])
+     ->middleware('auth')->name('course.enrolled');
+
+Route::get('course-status/{course}', function($course){
+    return 'Aqui se matricula';
+})->name('course.status');
+
+
