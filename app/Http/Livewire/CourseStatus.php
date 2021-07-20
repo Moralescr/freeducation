@@ -6,14 +6,18 @@ use Livewire\Component;
 use App\Models\Course;
 use App\Models\Lesson;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class CourseStatus extends Component
 {
+    use AuthorizesRequests;
+
     public $course, $current;
 
     public function mount(Course $course)
     {
         $this->course = $course;
-
+        
         foreach ($course->lessons as $lesson) 
         {
             if(!$lesson->completed)
@@ -28,6 +32,8 @@ class CourseStatus extends Component
         {
             $this->current = $course->lessons->last();
         }
+      
+        $this->authorize('enrolled', $course); //Validate route status
     }
 
     public function render()
